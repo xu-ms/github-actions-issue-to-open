@@ -1,6 +1,6 @@
-console.log("Hello World!");
+
 const { includes } = require("resium");
-console.log("includes");
+
 const first_filter_comb = ["safety", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
@@ -13,10 +13,9 @@ const env_time = env.created_at
 const env_url = env.html_url
 const env_number = env.number
 
-console.log("Issue Title: " + env_title + "\n" + "Issue Body: " + env_body + "\n" + "Issue Creation Time: " + env_time + "\n" + "Issue URL: " + env_url + "\n")
 if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
 {
-    console.log("Issue needs Attention!" + "\n","Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n" )
+    console.log("Issue needs Attention!" + "\n" + "Issue Number: " + env_number + "\n" +"Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n")
 }
 
 for (let item1 of first_filter_comb) {
@@ -24,7 +23,7 @@ for (let item1 of first_filter_comb) {
         if ((env_title.includes(item1) && env_title.includes(item2)) || 
         (env_body.includes(item1) && env_body.includes(item2)))
         {
-            console.log("Issue needs Attention!" + "\n","Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n" )
+            console.log("Issue needs Attention!" + "\n" + "Issue Number: " + env_number + "\n" + "Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n" )
         }
     }
 };
