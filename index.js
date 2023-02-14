@@ -11,6 +11,7 @@ const env_body = env.body
 const env_time = env.created_at
 const env_url = env.html_url
 
+console.log("Issue Title: " + env_title + "\n" + "Issue Body: " + env_body + "\n" + "Issue Creation Time: " + env_time + "\n" + "Issue URL: " + env_url + "\n")
 if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
 {
     console.log("Issue needs Attention!" + "\n","Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n" )
