@@ -8,7 +8,7 @@ outputs:
   id:
     description: "id of issue created"
 runs:
-  using: "node12"
+  using: "node16"
   main: "index.js"
 # runs:
 #   using: "composite"

@@ -1,5 +1,6 @@
+console.log("Hello World!");
 const { includes } = require("resium");
-
+console.log("includes");
 const first_filter_comb = ["safety", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
@@ -10,6 +11,7 @@ const env_title = env.title
 const env_body = env.body
 const env_time = env.created_at
 const env_url = env.html_url
+const env_number = env.number
 
 console.log("Issue Title: " + env_title + "\n" + "Issue Body: " + env_body + "\n" + "Issue Creation Time: " + env_time + "\n" + "Issue URL: " + env_url + "\n")
 if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
