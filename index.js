@@ -15,18 +15,38 @@ const env_number = env.number
 
 if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
 {
-    console.log("Issue needs Attention!" + "\n" + "Issue Number: " + env_number + "\n" +"Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n")
+    var data ={
+        "title":"privacy",
+        "issueName":env_title,
+        "issueLink":env_url,
+        "issueNumber":env_number,
+        "issueCreateTime":env_time
+    }
+    var jsonData = JSON.stringify(data);
+    console.log(`::set-output name=json-data::${jsonData}`);
+}
+else{
+    for (let item1 of first_filter_comb) {
+        for (let item2 of second_filter_comb) {
+            if ((env_title.includes(item1) && env_title.includes(item2)) || 
+            (env_body.includes(item1) && env_body.includes(item2)))
+            {
+                var data ={
+                    "title":"privacy",
+                    "issueName":env_title,
+                    "issueLink":env_url,
+                    "issueNumber":env_number,
+                    "issueCreateTime":env_time
+                }
+                var jsonData = JSON.stringify(data);
+                console.log(`::set-output name=json-data::${jsonData}`);
+            }
+        }
+    };
 }
 
-for (let item1 of first_filter_comb) {
-    for (let item2 of second_filter_comb) {
-        if ((env_title.includes(item1) && env_title.includes(item2)) || 
-        (env_body.includes(item1) && env_body.includes(item2)))
-        {
-            console.log("Issue needs Attention!" + "\n" + "Issue Number: " + env_number + "\n" + "Issue Title: " + env_title +"(" + env_url + ")" + "\n","Creation Time: " + env_time + "\n" )
-        }
-    }
-};
+
+
 
 // fetch(url)
 //   .then(response => response.json())
