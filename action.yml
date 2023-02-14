@@ -10,10 +10,9 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+    - name: Install python
+      run: sudo apt-get install python3
+      shell: bash
     - name: Install dependencies 
       shell: bash
       run: | 
