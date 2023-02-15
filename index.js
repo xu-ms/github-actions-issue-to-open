@@ -89,7 +89,7 @@ function sendMail(){
                                                 height: 50px;">
                                             <a href="#" style="text-decoration: none;">
                                                 <p style="color:white;
-                                                        font-weight:bold;">
+                                                        font-weight:bold; font-size: 18px">
                                                     GitHub Auto-Digest Bot
                                                 </p>
                                             </a>
@@ -125,21 +125,21 @@ function sendMail(){
                                 background-color: white;">
                             
                             <h2 style="text-align: left; align-items: center;">
-                                issue title:${issue.title}
+                                Issue Title: ${issue.title}
                             </h2>
                             <p class="data" 
                                 style="text-align: justify-all;
                                 align-items: center; 
                                 font-size: 15px;
                                 padding-bottom: 12px;">
-                                issue number:${issue.number}
+                                Issue Number: ${issue.number}
                             </p>
                             <p class="data" 
                                 style="text-align: justify-all;
                                 align-items: center; 
                                 font-size: 15px;
                                 padding-bottom: 12px;">
-                                issue create time:${issue.created_at}
+                                Issue Create Time: ${issue.created_at}
                             </p>
                             <p>
                                 <a href="${issue.html_url}"
