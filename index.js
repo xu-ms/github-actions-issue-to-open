@@ -12,6 +12,7 @@ const first_filter_comb = ["safty", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;
+const email_password = core.getInput('EMAIL_PASSWORD');
 
 core.debug(issue)
 
@@ -66,26 +67,25 @@ function setOutput() {
 }
 
 function sendMail(){
-    // 创建一个邮件传输对象
+
+    
     let transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         port: 587,
         secure: false,
         auth: {
-        user: 'zhangxu2022@outlook.com', // 发送邮件的邮箱
-        pass: '' // 发送邮件的邮箱密码
+        user: 'zhangxu2022@outlook.com', 
+        pass: email_password
         }
     });
     
-    // 邮件内容
     let mailOptions = {
-        from: 'zhangxu2022@outlook.com', // 发送邮件的邮箱
-        to: 'xuzhang4@microsoft.com', // 接收邮件的邮箱
+        from: 'zhangxu2022@outlook.com', 
+        to: 'xuzhang4@microsoft.com', 
         subject: 'Alarm: new high priority issue need to look into!',
         text: `issue link:${issue.html_url}` + `issue number:${issue.number}` + `issue create time:${issue.created_at}` + `issue title:${issue.title}`
     };
     
-    // 发送邮件
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
         console.log(error);
