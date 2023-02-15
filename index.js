@@ -3,6 +3,21 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 const path = require('path');
+console.log(__dirname);
+
+
+fs.readdir('.', (err, files) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log('当前目录中的文件有：');
+  files.forEach(file => {
+    console.log(file);
+  });
+});
+
 
 const jsonPath = path.join(__dirname, '..', '.github', 'keywork_list.json');
 const jsonData = fs.readFileSync(jsonPath, 'utf8');
