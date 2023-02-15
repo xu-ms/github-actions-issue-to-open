@@ -9,6 +9,8 @@ const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;
 
+console.log(issue)
+
 main()
 
 function main(){
