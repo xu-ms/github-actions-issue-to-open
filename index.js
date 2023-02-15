@@ -19,10 +19,15 @@ fs.readdir('.', (err, files) => {
 });
 
 
-const jsonPath = path.join(__dirname, '..', '.github', 'keywork_list.json');
-const jsonData = fs.readFileSync(jsonPath, 'utf8');
-const KeyWords_List = JSON.parse(jsonData);
+//const jsonPath = path.join(__dirname, '..', '.github', 'keywork_list.json');
+//const jsonData = fs.readFileSync(jsonPath, 'utf8');
+//const KeyWords_List = JSON.parse(jsonData);
 
+const KeyWords_List = {
+    "first_filter_comb": ["safty", "security", "concern"],
+    "second_filter_comb": ["data", "password", "profile"],
+    "filter_kw": "privacy"
+};
 const first_filter_comb = KeyWords_List.first_filter_comb;
 const second_filter_comb = KeyWords_List.second_filter_comb;
 const filter_kw = KeyWords_List.filter_kw;
