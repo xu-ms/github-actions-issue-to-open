@@ -77,7 +77,7 @@ function sendMail(){
         from: 'autodigectbot@outlook.com', 
         to: 'sunelyssa@microsoft.com', 
         subject: 'Alarm: new high priority issue need to look into!',
-        text: `issue link:${issue.html_url}` + `issue number:${issue.number}` + `issue create time:${issue.created_at}` + `issue title:${issue.title}`
+        text: `issue title:${issue.title}` + `\n` +`issue link:${issue.html_url}` + `\n` + `issue number:${issue.number}` + `\n` +`issue create time:${issue.created_at}`
     };
     
     transporter.sendMail(mailOptions, function(error, info) {
