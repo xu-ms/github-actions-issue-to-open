@@ -4,7 +4,7 @@ const github = require('@actions/github');
 const fs = require('fs');
 const path = require('path');
 
-const jsonPath = path.join(__dirname, '..', '.github', 'KeyWords_List.json');
+const jsonPath = path.join(__dirname, '..', '.github', 'keywork_list.json');
 const jsonData = fs.readFileSync(jsonPath, 'utf8');
 const KeyWords_List = JSON.parse(jsonData);
 
