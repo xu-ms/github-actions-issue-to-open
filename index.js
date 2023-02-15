@@ -1,11 +1,11 @@
 const { includes } = require("resium");
 const core = require('@actions/core');
 
-const KeyWords_List = require('./KeyWords_List.json')
+//const KeyWords_List = require('./KeyWords_List.json')
 
-const first_filter_comb = KeyWords_List.first_filter_comb;
-const second_filter_comb = KeyWords_List.second_filter_comb;
-const filter_kw = KeyWords_List.filter_kw;
+const first_filter_comb = ["safty", "security", "concern"];
+const second_filter_comb = ["data", "password", "profile"];
+const filter_kw = "privacy";
 
 const env = process.env;
 const env_title = env.title
@@ -13,14 +13,6 @@ const env_body = env.body
 const env_time = env.created_at
 const env_url = env.html_url
 const env_number = env.number
-
-
-// const env_title = "data concern"
-// const env_body = "data concern"
-// const env_time = "2022-08-03"
-// const env_url = "env.html_url"
-// const env_number = "env.number"
-
 
 main()
 
