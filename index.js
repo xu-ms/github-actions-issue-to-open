@@ -73,7 +73,7 @@ function sendMail(){
         secure: false,
         auth: {
         user: 'zhangxu2022@outlook.com', // 发送邮件的邮箱
-        pass: 'msmusatjntyhnrco' // 发送邮件的邮箱密码
+        pass: '' // 发送邮件的邮箱密码
         }
     });
     
