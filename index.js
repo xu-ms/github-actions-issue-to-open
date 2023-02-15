@@ -8,7 +8,7 @@ console.log(__dirname);
 
 
 
-const first_filter_comb = ["safty", "security", "concern"];
+const first_filter_comb = ["safety", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;

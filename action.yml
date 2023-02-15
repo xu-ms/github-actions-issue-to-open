@@ -7,7 +7,7 @@ branding:
 inuts:
   email_password:
     description: "send email auth"
-    default: ${{ secrets.MY_SECRET }}
+    type:secret
 outputs:
   issue_info:
     description: "opened issue info"
