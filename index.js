@@ -1,11 +1,11 @@
-
 const { includes } = require("resium");
 const core = require('@actions/core');
 
-const first_filter_comb = ["safety", "security", "concern"];
-const second_filter_comb = ["data", "password", "profile"];
-const filter_kw = "privacy";
+const KeyWords_List = require('./KeyWords_List.json')
 
+const first_filter_comb = KeyWords_List.first_filter_comb;
+const second_filter_comb = KeyWords_List.second_filter_comb;
+const filter_kw = KeyWords_List.filter_kw;
 
 const env = process.env;
 const env_title = env.title
@@ -19,31 +19,37 @@ main()
 
 function main(){
     var need_attention = false;
-    if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
-    {
-        setOutput();
-        need_attention = true;
-    }
-    else{
-        for (let item1 of first_filter_comb) {
-            for (let item2 of second_filter_comb) {
-                if ((env_title.includes(item1) && env_title.includes(item2)) || 
-                (env_body.includes(item1) && env_body.includes(item2)))
-                {
-                    setOutput();
-                    need_attention = true;
+    try{
+        if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
+        {
+            setOutput();
+            need_attention = true;
+        }
+        else{
+            for (let item1 of first_filter_comb) {
+                for (let item2 of second_filter_comb) {
+                    if ((env_title.includes(item1) && env_title.includes(item2)) || 
+                    (env_body.includes(item1) && env_body.includes(item2)))
+                    {
+                        setOutput();
+                        need_attention = true;
+                        break;
+                    }
+                }
+                if (need_attention){
                     break;
                 }
-            }
-            if (need_attention){
-                break;
-            }
-        };
+            };
+        }
+        if (!need_attention){
+            console.log("No Need Attention")
+            core.setOutput("need_attention", 'false');
+        }
     }
-    if (!need_attention){
-        console.log("No Need Attention")
-        core.setOutput("need_attention", 'false');
+    catch(err){
+        console.log("Filter Fails" + err.message)
     }
+    
 }
 
 function setOutput() {
@@ -59,24 +65,3 @@ function setOutput() {
     console.log("Need Attention")
     core.setOutput("issue_info", jsonData);
 }
-
-
-
-
-
-
-// fetch(url)
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log(data);
-//     const openIssues = data.filter(issue => !issue.closed_at);
-//     const filteredIssues = openIssues.filter(issue => checkCombinationInIssue(issue, first_filter_comb, second_filter_comb));
-//     console.log("Filtered Issues:");
-//     filteredIssues.forEach(issue => {
-//         console.log("- ${issue.title}")
-//     })
-
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
