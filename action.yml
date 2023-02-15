@@ -5,12 +5,13 @@ branding:
   icon: "book-open"
   color: "green"
 outputs:
-  id:
-    description: "id of issue created"
+  issueInfo:
+    description: "opened issue info"
+  needAttention:
+    description: "need send email"
 runs:
   using: "node16"
   main: "index.js"
-  run: echo "::set-output name=json-data::$(echo $jsonData | jq -c -R '.')"
 # runs:
 #   using: "composite"
 #   steps:
