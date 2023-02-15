@@ -38,7 +38,6 @@ function main(){
             };
         }
         if (!need_attention){
-            console.log("No Need Attention")
             core.setOutput("need_attention", 'false');
         }
     }
@@ -57,6 +56,6 @@ function setOutput() {
     }
     var jsonData = JSON.stringify(data);
     core.setOutput("need_attention", 'true');
-    console.log("Need Attention")
     core.setOutput("issue_info", jsonData);
+    core.warning("Alarm: new high priority issue need to look into!\n" + issue.html_url)
 }
