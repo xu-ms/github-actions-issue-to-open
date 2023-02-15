@@ -155,7 +155,7 @@ function sendMail(){
         </body>
     </html>
     `
-    
+
     let mailOptions = {
         from: 'autodigectbot@outlook.com', 
         to: 'sunelyssa@microsoft.com', 
