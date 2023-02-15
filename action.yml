@@ -4,6 +4,10 @@ author: "xu"
 branding:
   icon: "book-open"
   color: "green"
+inuts:
+  email_password:
+    description: "send email auth"
+    default: ${{ secrets.MY_SECRET }}
 outputs:
   issue_info:
     description: "opened issue info"

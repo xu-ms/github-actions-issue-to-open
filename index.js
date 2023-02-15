@@ -12,7 +12,7 @@ const first_filter_comb = ["safty", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;
-const email_password = core.getInput('EMAIL_PASSWORD');
+const email_password = core.getInput('email_password');
 
 core.debug(issue)
 
@@ -68,7 +68,6 @@ function setOutput() {
 
 function sendMail(){
 
-    
     let transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         port: 587,
