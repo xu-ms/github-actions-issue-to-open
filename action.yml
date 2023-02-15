@@ -5,9 +5,9 @@ branding:
   icon: "book-open"
   color: "green"
 outputs:
-  issueInfo:
+  issue_info:
     description: "opened issue info"
-  needAttention:
+  need_attention:
     description: "need send email"
 runs:
   using: "node16"
