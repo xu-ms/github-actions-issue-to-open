@@ -2,10 +2,11 @@ const { includes } = require("resium");
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-const KeyWords_List = require('./KeyWords_List.json')
-const first_filter_comb = KeyWords_List.first_filter_comb;
-const second_filter_comb = KeyWords_List.second_filter_comb;
-const filter_kw = KeyWords_List.filter_kw;
+
+
+const first_filter_comb = ["safty", "security", "concern"];
+const second_filter_comb = ["data", "password", "profile"];
+const filter_kw = "privacy";
 const issue = github.context.payload.issue;
 
 main()
