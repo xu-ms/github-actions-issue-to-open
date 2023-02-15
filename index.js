@@ -16,6 +16,7 @@ const env_number = env.number
 
 
 main()
+
 function main(){
     var need_attention = false;
     if (env_title.includes(filter_kw) || env_body.includes(filter_kw))
@@ -40,6 +41,7 @@ function main(){
         };
     }
     if (!need_attention){
+        console.log("No Need Attention")
         core.setOutput("needAttention", false);
     }
 }
@@ -54,6 +56,7 @@ function setOutput() {
     }
     var jsonData = JSON.stringify(data);
     core.setOutput("needAttention", true);
+    console.log("Need Attention")
     core.setOutput("issueInfo", jsonData);
 }
 
