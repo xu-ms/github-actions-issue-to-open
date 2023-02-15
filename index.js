@@ -42,7 +42,7 @@ function main(){
     }
     if (!need_attention){
         console.log("No Need Attention")
-        core.setOutput("needAttention", false);
+        core.setOutput("needAttention", 'false');
     }
 }
 
@@ -55,7 +55,7 @@ function setOutput() {
         "issueCreateTime":env_time
     }
     var jsonData = JSON.stringify(data);
-    core.setOutput("needAttention", true);
+    core.setOutput("needAttention", 'true');
     console.log("Need Attention")
     core.setOutput("issueInfo", jsonData);
 }
