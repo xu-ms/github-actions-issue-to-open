@@ -51,9 +51,9 @@ function setOutput() {
     var data ={
         "title":"privacy",
         "issueName":issue.title,
-        "issueLink":issue.url,
+        "issueLink":issue.html_url,
         "issueNumber":issue.number,
-        "issueCreateTime":issue.time
+        "issueCreateTime":issue.created_at
     }
     var jsonData = JSON.stringify(data);
     core.setOutput("need_attention", 'true');
