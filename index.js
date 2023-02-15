@@ -1,13 +1,13 @@
 const { includes } = require("resium");
 const core = require('@actions/core');
 const github = require('@actions/github');
-
-
+const nodemailer = require('nodemailer');
 
 const first_filter_comb = ["safty", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;
+const email_password = core.getInput('email_password');
 
 core.debug(issue)
 
@@ -59,3 +59,33 @@ function setOutput() {
     core.setOutput("issue_info", jsonData);
     core.warning("Alarm: new high priority issue need to look into!\n" + issue.html_url)
 }
+
+function sendMail(){
+
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.office365.com',
+        port: 587,
+        secure: false,
+        auth: {
+        user: 'autodigectbot@outlook.com', 
+        pass: email_password
+        }
+    });
+    
+    let mailOptions = {
+        from: 'autodigectbot@outlook.com', 
+        to: 'sunelyssa@microsoft.com', 
+        subject: 'Alarm: new high priority issue need to look into!',
+        text: `issue link:${issue.html_url}` + `issue number:${issue.number}` + `issue create time:${issue.created_at}` + `issue title:${issue.title}`
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+        console.log(error);
+        } else {
+        console.log('Email sent: ' + info.response);
+        }
+    });
+  
+}
+
