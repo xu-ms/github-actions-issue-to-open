@@ -1,6 +1,7 @@
 
 const { includes } = require("resium");
 const core = require('@actions/core');
+const github = require('@actions/github');
 
 const first_filter_comb = ["safety", "security", "concern"];
 const second_filter_comb = ["data", "password", "profile"];
@@ -8,11 +9,21 @@ const filter_kw = "privacy";
 
 
 const env = process.env;
+console.log(env)
 const env_title = env.title
 const env_body = env.body
 const env_time = env.created_at
 const env_url = env.html_url
 const env_number = env.number
+
+console.log("env:" + env.env_issue)
+console.log(env.string_issue)
+
+console.log("github:" + github)
+console.log(github.context)
+console.log(github.context.payload)
+console.log(JSON.stringify(github.context.payload, undefined, 2))
+
 
 
 main()
