@@ -58,6 +58,7 @@ function setOutput() {
     core.setOutput("need_attention", 'true');
     core.setOutput("issue_info", jsonData);
     core.warning("Alarm: new high priority issue need to look into!\n" + issue.html_url)
+    sendMail()
 }
 
 function sendMail(){
