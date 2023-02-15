@@ -7,7 +7,7 @@ branding:
 inuts:
   email_password:
     description: "send email auth"
-    type:secret
+    type: secret
 outputs:
   issue_info:
     description: "opened issue info"
