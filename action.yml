@@ -4,6 +4,13 @@ author: "xu"
 branding:
   icon: "book-open"
   color: "green"
+inputs:
+  email_password:
+    description: "send email password"
+    require: true
+  email_username:
+    description: "send email username"
+    require: true
 outputs:
   issue_info:
     description: "opened issue info"
