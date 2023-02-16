@@ -8,68 +8,71 @@ const second_filter_comb = ["data", "password", "profile"];
 const filter_kw = "privacy";
 const issue = github.context.payload.issue;
 const email_password = core.getInput('email_password');
-
+const email_username = core.getInput('email_username');
+const email_to = ["sunelyssa@microsoft.com","xuzhang4@microsoft.com"];
 core.debug(issue)
 
 main()
 
-function main(){
+function main() {
     var need_attention = false;
-    try{
-        if (issue?.title?.includes(filter_kw) || issue?.body?.includes(filter_kw))
-        {
-            setOutput();
+    try {
+        if (issue?.title?.includes(filter_kw) || issue?.body?.includes(filter_kw)) {
+            setOutput_sendEmail();
             need_attention = true;
         }
-        else{
+        else {
             for (let item1 of first_filter_comb) {
                 for (let item2 of second_filter_comb) {
-                    if ((issue?.title?.includes(item1) && issue?.title?.includes(item2)) || 
-                    (issue?.body?.includes(item1) && issue?.body?.includes(item2)))
-                    {
-                        setOutput();
+                    if ((issue?.title?.includes(item1) && issue?.title?.includes(item2)) ||
+                        (issue?.body?.includes(item1) && issue?.body?.includes(item2))) {
+                            setOutput_sendEmail();
                         need_attention = true;
                         break;
                     }
                 }
-                if (need_attention){
+                if (need_attention) {
                     break;
                 }
             };
         }
-        if (!need_attention){
+        if (!need_attention) {
             core.setOutput("need_attention", 'false');
         }
     }
-    catch(err){
-        core.error(`Error ${err}`);
+    catch (err) {
+        core.setFailed(`Error ${err}`);
     }
 }
 
-function setOutput() {
-    var data ={
-        "title":"privacy",
-        "issueName":issue.title,
-        "issueLink":issue.html_url,
-        "issueNumber":issue.number,
-        "issueCreateTime":issue.created_at
+function setOutput_sendEmail() {
+    var data = {
+        "title": "privacy",
+        "issueName": issue.title,
+        "issueLink": issue.html_url,
+        "issueNumber": issue.number,
+        "issueCreateTime": issue.created_at
     }
     var jsonData = JSON.stringify(data);
     core.setOutput("need_attention", 'true');
     core.setOutput("issue_info", jsonData);
-    core.warning("Alarm: new high priority issue need to look into!\n" + issue.html_url)
-    sendMail()
+    core.notice("Alarm: new high priority issue need to look into!\n" + issue.html_url)
+    try {
+        sendMail();
+    } catch (err) {
+        core.error(err.message)
+    }
 }
 
-function sendMail(){
+function sendMail() {
 
     let transporter = nodemailer.createTransport({
         host: 'smtp.office365.com',
         port: 587,
         secure: false,
         auth: {
-        user: 'autodigectbot@outlook.com', 
-        pass: email_password
+            user: email_username,
+            pass: email_password
         }
     });
 
@@ -160,19 +163,19 @@ function sendMail(){
     `
 
     let mailOptions = {
-        from: 'autodigectbot@outlook.com', 
-        to: 'sunelyssa@microsoft.com', 
+        from: email_username,
+        to: email_to,
         subject: 'Alarm: new high priority issue need to look into!',
-        //text: `issue title:${issue.title}` + `\n` +`issue link:${issue.html_url}` + `\n` + `issue number:${issue.number}` + `\n` +`issue create time:${issue.created_at}`
-        html: emailContent
+        html: emailContent,
+        priority: "high"
     };
-    
-    transporter.sendMail(mailOptions, function(error, info) {
+
+    transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-        console.log(error);
+            core.error(error);
         } else {
-        console.log('Email sent: ' + info.response);
+            core.info('Email sent: ' + info.response);
         }
     });
-  
+
 }
